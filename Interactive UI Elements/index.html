@@ -12,6 +12,16 @@
 
     <p>Натисніть кнопку для створення повідомлення.</p>
 
+    <div class="controls">
+        <label for="positionSelect">Позиція:</label>
+        <select id="positionSelect">
+            <option value="top-right">Top Right</option>
+            <option value="top-left">Top Left</option>
+            <option value="bottom-right">Bottom Right</option>
+            <option value="bottom-left">Bottom Left</option>
+        </select>
+    </div>
+
     <div class="buttons">
         <button class="btn success" data-type="success">Success</button>
         <button class="btn error" data-type="error">Error</button>
@@ -19,7 +29,7 @@
         <button class="btn info" data-type="info">Info</button>
     </div>
 
-    <div id="notifications" class="notifications"></div>
+    <div id="notifications" class="notifications top-right"></div>
 
     <script src="script.js"></script>
 </body>

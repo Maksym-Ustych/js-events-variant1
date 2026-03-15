@@ -1,5 +1,12 @@
 const notificationsContainer = document.getElementById("notifications");
 const buttons = document.querySelectorAll(".btn");
+const positionSelect = document.getElementById("positionSelect");
+
+const maxNotifications = 3;
+
+positionSelect.addEventListener("change", function () {
+    notificationsContainer.className = "notifications " + positionSelect.value;
+});
 
 buttons.forEach(button => {
     button.addEventListener("click", function () {
@@ -9,6 +16,10 @@ buttons.forEach(button => {
 });
 
 function showNotification(type) {
+    if (notificationsContainer.children.length >= maxNotifications) {
+        notificationsContainer.firstElementChild.remove();
+    }
+
     const notification = document.createElement("div");
     notification.classList.add("notification", type);
 
@@ -33,6 +44,9 @@ function showNotification(type) {
         <button class="close-btn">&times;</button>
         <div class="notification-title">${title}</div>
         <div class="notification-message">${message}</div>
+        <div class="notification-actions">
+            <button class="action-btn ok-btn">OK</button>
+        </div>
         <div class="progress">
             <div class="progress-bar"></div>
         </div>
@@ -41,7 +55,14 @@ function showNotification(type) {
     notificationsContainer.appendChild(notification);
 
     const closeBtn = notification.querySelector(".close-btn");
+    const okBtn = notification.querySelector(".ok-btn");
+
     closeBtn.addEventListener("click", function () {
+        notification.remove();
+    });
+
+    okBtn.addEventListener("click", function () {
+        alert("Дію підтверджено");
         notification.remove();
     });
 
